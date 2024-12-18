@@ -1,0 +1,41 @@
+{
+  "name": "studiopresence",
+  "version": "3.0.0",
+  "description": "Connect your Studio with Discord!",
+  "main": "dist/server/index.js",
+  "bin": "dist/server/index.js",
+  "author": "iArxic",
+  "license": "ISC",
+  "repository": "github:iArxic/StudioPresence",
+  "private": true,
+  "pkg": {
+    "scripts": "dist/server/**/*.js",
+    "targets": [
+      "node18-win-x64",
+      "node18-macos-x64",
+      "node18-linux-x64"
+    ],
+    "outputPath": "release"
+  },
+  "scripts": {
+    "build:server": "rimraf dist/server && ncc build src/server/index.ts -o dist/server",
+    "dev:server": "ncc build src/server/index.ts -o dist/server -w",
+    "package:server": "rimraf release && npm run build:server && pkg . && npm run package:vbs",
+    "build:client": "rojo build -o release/studiopresence.rbxm",
+    "package": "npm run package:server && npm run build:client",
+    "package:vbs": "copy-file-util src/server/startup.vbs --folder release"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "discord-rpc": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/discord-rpc": "^4.0.3",
+    "@types/node": "^18.11.18",
+    "@vercel/ncc": "^0.36.0",
+    "copy-file-util": "^1.2.1",
+    "pkg": "^5.8.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.4"
+  }
+}
