@@ -20,7 +20,7 @@ async function login(client) {
             console.error(chalk_1.default.red("StudioPresence failed to start (Is Discord open?)"));
         }
         else {
-            console.log(chalk_1.default.green("StudioPresence started"));
+            console.log(chalk_1.default.green("Test/Ver(0.1) started"));
         }
     }
 }
